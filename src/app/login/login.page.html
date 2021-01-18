@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Login</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label position="floating">Correo:</ion-label>
+        <ion-input type="text" #correo required [(ngModel)]=loginInfo.correo></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Contraseña:</ion-label>
+        <ion-input type="password" #password required [(ngModel)]=loginInfo.contrasenia></ion-input>
+    </ion-item>
+    <ion-row>
+
+        <ion-col>
+            <ion-item>
+                <ion-button color="dark" (click)="login()">Login</ion-button>
+            </ion-item>
+
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+        <ion-col>
+            <ion-item>
+                <ion-button color="dark" (click)="onLogConGoogle()">Google</ion-button>
+            </ion-item>
+
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <p>
+                <a routerLink="/registro">Si no tienes una Cuenta puedes registrarte </a>
+            </p>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <p>
+                <a routerLink="/recuperar-contrasenia">Olvidaste tu contraseña</a>
+            </p>
+        </ion-col>
+    </ion-row>
+
+</ion-content>>

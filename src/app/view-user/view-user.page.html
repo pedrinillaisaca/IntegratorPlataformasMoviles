@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Usuario</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <h5>Bienvenido {{infoUser.correo}} </h5>
+
+    <!-- <ion-item>
+        <ion-label position="floating"></ion-label>
+        <ion-input type="text" [(ngModel)]=configApp.tiempo></ion-input>
+    </ion-item> -->
+
+    <ion-item>
+        <ion-label>Intervalo:</ion-label>
+        <ion-select value="5min" [(ngModel)]=configApp.tiempo>
+            <ion-select-option value="10min">10min</ion-select-option>
+            <ion-select-option value="15min">15min</ion-select-option>
+            <ion-select-option value="20min">20min</ion-select-option>
+            <ion-select-option value="25min">25min</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Param:</ion-label>
+        <ion-input type="text" [(ngModel)]=configApp.param></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Param1:</ion-label>
+        <ion-input type="text" [(ngModel)]=configApp.param1></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Param2:</ion-label>
+        <ion-input type="text" [(ngModel)]=configApp.param2></ion-input>
+    </ion-item>
+
+    <ion-row>
+        <ion-col>
+            <ion-button type="submit" color="primary" expand="block" (click)="saveConfig()">Guardar Cambios</ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button type="submit" color="primary" expand="block" (click)="logOut()">Cerrar Sesion</ion-button>
+        </ion-col>
+    </ion-row>
+
+</ion-content>

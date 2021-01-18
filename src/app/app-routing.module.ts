@@ -10,6 +10,26 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'view-user',
+    loadChildren: () => import('./view-user/view-user.module').then( m => m.ViewUserPageModule)
+  },
+  {
+    path: 'recuperar-contrasenia',
+    loadChildren: () => import('./recuperar-contrasenia/recuperar-contrasenia.module').then( m => m.RecuperarContraseniaPageModule)
+  },
+  {
+    path: 'msj-confirm',
+    loadChildren: () => import('./msj-confirm/msj-confirm.module').then( m => m.MsjConfirmPageModule)
   }
 ];
 
