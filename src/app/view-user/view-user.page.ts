@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ConfiguracionApp } from '../modelo/configApp';
 import { ConfigAppServService } from '../services/config-app-serv.service';
+import { NotificacionesService } from '../services/notificaciones.service';
 
 
 
@@ -22,6 +23,7 @@ export class ViewUserPage implements OnInit {
   constructor(private route: ActivatedRoute,
      private router: Router,
      private authSvc:AuthService,
+     public notifiationsServ:NotificacionesService,
      public configAppService:ConfigAppServService) {
     this.route.queryParams.subscribe(params=>{
       if(this.router.getCurrentNavigation().extras.queryParams){
@@ -47,6 +49,7 @@ export class ViewUserPage implements OnInit {
   
   saveConfig(){
     this.configAppService.guardarConfiguracion(this.configApp);
+    this.notifiationsServ.notificacionToast('Informatiion guardada');
   }
   
 }

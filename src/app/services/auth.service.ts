@@ -6,13 +6,18 @@ import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { NotificacionesService } from './notificaciones.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public user$: Observable<User>;
 
-  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(
+    public afAuth: AngularFireAuth,
+    public notificationServ:NotificacionesService,
+    private afs: AngularFirestore) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
@@ -28,6 +33,8 @@ export class AuthService {
       return this.afAuth.sendPasswordResetEmail(email);
     } catch (error) {
       console.log('Error->', error);
+      this.notificationServ.notificacionToasError(error.message);
+      
     }
   }
 
@@ -49,6 +56,7 @@ export class AuthService {
       return user;
     } catch (error) {
       console.log('Error->', error);
+      this.notificationServ.notificacionToasError(error.message);
     }
   }
 
@@ -59,6 +67,7 @@ export class AuthService {
       return user;
     } catch (error) {
       console.log('Error->', error);
+      this.notificationServ.notificacionToasError(error.message);
     }
   }
 
@@ -67,6 +76,7 @@ export class AuthService {
       return (await this.afAuth.currentUser).sendEmailVerification();
     } catch (error) {
       console.log('Error->', error);
+      this.notificationServ.notificacionToasError(error.message);
     }
   }
 
@@ -79,6 +89,7 @@ export class AuthService {
       await this.afAuth.signOut();
     } catch (error) {
       console.log('Error->', error);
+      this.notificationServ.notificacionToasError(error.message);
     }
   }
 
