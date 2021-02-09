@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'msj-confirm',
     loadChildren: () => import('./msj-confirm/msj-confirm.module').then( m => m.MsjConfirmPageModule)
+  },
+  {
+    path: 'localizaciones',
+    loadChildren: () => import('./localizaciones/localizaciones.module').then( m => m.LocalizacionesPageModule)
   }
 ];
 

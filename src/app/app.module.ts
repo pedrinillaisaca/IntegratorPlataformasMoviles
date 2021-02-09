@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 
 
 
+
 @NgModule({
    declarations: [AppComponent],
    entryComponents: [],
@@ -24,6 +25,9 @@ import { environment } from 'src/environments/environment';
      AppRoutingModule,
      AngularFireModule.initializeApp(environment.firebaseConfig),
      AngularFireAuthModule,
+    //  AgmCoreModule.forRoot({
+    //   apiKey: ''
+    // })
    ],
    providers: [
      StatusBar,

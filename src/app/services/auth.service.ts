@@ -40,6 +40,7 @@ export class AuthService {
   //      console.log('Error->', error);
   //    }
   //  }
+  
 
   async register(email: string, password: string): Promise<User> {
     try {

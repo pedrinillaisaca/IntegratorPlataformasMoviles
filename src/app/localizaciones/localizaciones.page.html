@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Localizacion</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- 
+  <agm-map [latitude]="lat" [longitude]="lng" (centerChange)='setNewLocation($event)'>
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map> -->
+
+    <agm-map [latitude]="lat" [longitude]="lng" (centerChange)="setNewLocation($event)">
+        <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'https://cdn4.iconfinder.com/data/icons/essential-app-2/16/botton-on-launch-point-48.png'">
+            <agm-info-window>UPS</agm-info-window>
+
+        </agm-marker>
+
+        <!-- <ion-item-sliding *ngFor="let ubicacionI of listUbicaicones | async">
+
+            <agm-marker [latitude]="ubicacionI.latitude" [longitude]="ubicacionI.longitude" [iconUrl]="'https://cdn4.iconfinder.com/data/icons/essential-app-2/16/botton-on-launch-point-48.png'">
+                <agm-info-window>marca</agm-info-window>
+            </agm-marker>
+
+        </ion-item-sliding> -->
+
+
+        <agm-marker [latitude]="newLocation.latitude" [longitude]="newLocation.longitude" [iconUrl]="'https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Ball-Azure.png'">
+            <agm-info-window>{{newLocation.address}}</agm-info-window>
+
+        </agm-marker>
+
+    </agm-map>
+
+
+</ion-content>
+<ion-content>
+    {{newLocation | json}}
+</ion-content>
+
+<!-- <ion-content>
+    <ion-button color="dark" (click)="guardarMarca()">Enviar</ion-button>
+    <ion-button color="dark" (click)="verUbicaciones()">Ver Ubicaciones</ion-button>
+</ion-content> -->
