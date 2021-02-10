@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+// procesos en segundo plano
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { AppLauncher } from '@ionic-native/app-launcher/ngx';
 
 
 
@@ -32,6 +35,8 @@ import { environment } from 'src/environments/environment';
    providers: [
      StatusBar,
      SplashScreen,
+     BackgroundMode,
+     AppLauncher,
      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ],
    bootstrap: [AppComponent]
