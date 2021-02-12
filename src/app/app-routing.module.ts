@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '',//cambios rama pruebas
     redirectTo: '/pregunta',
     pathMatch: 'full'
   },
