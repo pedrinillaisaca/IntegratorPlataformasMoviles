@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 // procesos en segundo plano
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { AppLauncher } from '@ionic-native/app-launcher/ngx';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 
 
 
@@ -37,6 +38,7 @@ import { AppLauncher } from '@ionic-native/app-launcher/ngx';
      SplashScreen,
      BackgroundMode,
      AppLauncher,
+     AppMinimize,
      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ],
    bootstrap: [AppComponent]

@@ -1,0 +1,53 @@
+.grid {
+    display: grid;
+    background: darkred;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 100px;
+    grid-row-gap: 40px;
+}
+
+.unidad {
+    display: center;
+    background: darkslategray;
+}
+
+.unidad1 {
+    display: center;
+    background: darkcyan;
+    grid-row: x0 / x1;
+}
+
+.unidad2 {
+    display: center;
+    background: darkgray;
+    grid-row: x0 / x1;
+}
+
+.unidad3 {
+    display: center;
+    background: darkred;
+    grid-row: x0 / x1;
+}
+
+.contenido {
+    background: rgb(206, 117, 117);
+    grid-row: y1 / y2;
+    color: white;
+}
+
+.content {
+    background: orange;
+    grid-column: x1 / x3;
+    grid-row: y1 / y3;
+}
+
+.footer {
+    background: green;
+    grid-column: x0 / x3;
+    grid-row: y2;
+}

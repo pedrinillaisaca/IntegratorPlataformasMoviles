@@ -14,6 +14,8 @@
     <ion-item>
         <ion-label>Intervalo:</ion-label>
         <ion-select value={{configApp.tiempo}} [(ngModel)]=configApp.tiempo>
+            <ion-select-option value="10seg">10seg</ion-select-option>
+            <ion-select-option value="50seg">50seg</ion-select-option>
             <ion-select-option value="10min">10min</ion-select-option>
             <ion-select-option value="15min">15min</ion-select-option>
             <ion-select-option value="20min">20min</ion-select-option>

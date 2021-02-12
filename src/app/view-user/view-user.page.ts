@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LoginInfo } from '../modelo/loginInf';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { ConfiguracionApp } from '../modelo/configApp';
 import { ConfigAppServService } from '../services/config-app-serv.service';
 import { NotificacionesService } from '../services/notificaciones.service';
 import { AppLauncher, AppLauncherOptions } from '@ionic-native/app-launcher/ngx';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { Platform } from '@ionic/angular';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class ViewUserPage implements OnInit {
   //configApp:ConfiguracionApp=new ConfiguracionApp();
   configApp:any;
   //configApp1:any;
+  interval:any;
 
   
 
@@ -29,7 +31,9 @@ export class ViewUserPage implements OnInit {
      private authSvc:AuthService,
      public notificationsServ:NotificacionesService,
      private appLauncher: AppLauncher,
-     private backgroud:BackgroundMode,  
+     private backgroud:BackgroundMode, 
+     private platform:Platform, 
+     private minimizar:AppMinimize,
      public configAppService:ConfigAppServService) {
     this.route.queryParams.subscribe(params=>{
       if(this.router.getCurrentNavigation().extras.queryParams){
@@ -69,46 +73,63 @@ export class ViewUserPage implements OnInit {
 
   runService(){
     console.log(this.interruptor);
-    if(this.interruptor==true)
+    if(this.interruptor==true){
       this.runApp();
-
-    
-    
+      this.notificationsServ.notificacionToast("El Servicio ha sido habilitado.");
+    }else{
+      this.stopServ();
+    }            
   }
 
   runApp(){      
-    // this.backgroud.enable();               
-    // this.backgroud.on("activate").subscribe(()=>{
-    //   setInterval(this.runAppp,2000);
-    //   this.backgroud.wakeUp();
-    //   this.backgroud.unlock();            
-    // });
     this.backgroud.enable();   
     this.backgroud.isScreenOff( ()=> {            
       this.backgroud.wakeUp();
       this.backgroud.unlock();
-         
-      let timerId=setInterval( () => this.runAppp(),5000);    
-      
+      this.runApp1();
       });    
   }
 
-  runAppp(){    
-    
-    console.log("PEDRO ILLAISACA");
-    
-    const options: AppLauncherOptions = {
-    }    
-    options.packageName = 'io.ionic.starter'
-    //console.log("PEdro",options)
-    this.appLauncher.canLaunch(options)//canLaunch(options)
-      .then((canLaunch: boolean) => this.appLauncher.launch(options))
-      .catch((error: any) => {this.notificationsServ.notificacionToasError("Error desconicido")}      
-      ); 
-    
+  runApp1(){  
+    var text:string=this.configApp.tiempo;
+    var num:number=+text.substr(0,2);
+    console.log("Activate pedro",text.substr(2,4));//10min      
+    if(text.substr(2,4)=='seg'){
+        setTimeout( ()=>this.cerrar() , 3000);        
+        this.interval=setInterval( () => this.runAppp(),(num*1000));    
+      }else{//caso contrario formato minutos
+        setTimeout( ()=> this.cerrar(), 3000);        
+        this.interval=setInterval( () => this.runAppp(),(num*60000));    
+      }    
   }
-
+  cerrar(){    
+    console.log("Cerrando..");
+    this.minimizar.minimize();
+    this.platform.pause.subscribe((result)=>{        
+      this.router.navigate(['/pregunta']);
+      });
+  }
+  runAppp(){ 
+    
+    console.log("PEDRO ILLAISACA");         
+    const options: AppLauncherOptions = {
+    }         
+    options.uri='io.ionic.starter://127.0.0.1:8100/prueba';//ESTA LINEA ES MUY IMPORTANTE !!!!!!!
+    options.packageName = 'io.ionic.starter';
+    //console.log("INFORMACIONS DE LAS OPCIONES ",options)
+    this.appLauncher.canLaunch(options)//canLaunch(options)
+      .then((canLaunch: boolean) => {
+        this.appLauncher.launch(options);       
+      })
+      .catch((error: any) => {this.notificationsServ.notificacionToasError("Error desconicido")}      
+      );           
+  }
+ 
 
   
-  
+  stopServ() {
+    clearInterval(this.interval);
+    this.notificationsServ.notificacionToast("El Servicio ha sido desabilitado.");
+  }
+    
 }
