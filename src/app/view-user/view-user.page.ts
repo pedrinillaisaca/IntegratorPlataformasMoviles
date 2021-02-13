@@ -8,6 +8,8 @@ import { AppLauncher, AppLauncherOptions } from '@ionic-native/app-launcher/ngx'
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { Platform } from '@ionic/angular';
 import { AppMinimize } from '@ionic-native/app-minimize/ngx';
+import { ConfiguracionApp } from '../modelo/configApp';
+
 
 
 @Component({
@@ -19,8 +21,8 @@ export class ViewUserPage implements OnInit {
   interruptor:boolean=false;
   user:any;
   infoUser : LoginInfo;
-  //configApp:ConfiguracionApp=new ConfiguracionApp();
-  configApp:any;
+  configApp:ConfiguracionApp=new ConfiguracionApp();
+  //configApp:any;
   //configApp1:any;
   interval:any;
 
@@ -35,16 +37,19 @@ export class ViewUserPage implements OnInit {
      private platform:Platform, 
      private minimizar:AppMinimize,
      public configAppService:ConfigAppServService) {
+
     this.route.queryParams.subscribe(params=>{
-      if(this.router.getCurrentNavigation().extras.queryParams){
+      try {
+        if(this.router.getCurrentNavigation().extras.queryParams){
         this.infoUser=this.router.getCurrentNavigation().extras.queryParams.infUser;
         this.user=this.router.getCurrentNavigation().extras.queryParams.userL;
-        this.configApp=this.router.getCurrentNavigation().extras.queryParams.configParam;//configParam
-
-        // this.configApp=configAppService.getConfigById(this.user.uid);
-        // console.log(this.configApp);
+        this.configApp=this.router.getCurrentNavigation().extras.queryParams.configParam;//configParam  
+        console.log("CONFIG APP:",this.configApp);              
       }
-            
+      } catch (error) {
+        console.log("Es mi primera vez");
+      }
+                  
     });
         
    }
@@ -91,7 +96,8 @@ export class ViewUserPage implements OnInit {
   }
 
   runApp1(){  
-    var text:string=this.configApp.tiempo;
+    try {
+      var text:string=this.configApp.tiempo;
     var num:number=+text.substr(0,2);
     console.log("Activate pedro",text.substr(2,4));//10min      
     if(text.substr(2,4)=='seg'){
@@ -101,6 +107,11 @@ export class ViewUserPage implements OnInit {
         setTimeout( ()=> this.cerrar(), 3000);        
         this.interval=setInterval( () => this.runAppp(),(num*60000));    
       }    
+      
+    } catch (error) {
+      console.log("ES mi primera Vez ");
+    }
+    
   }
   cerrar(){    
     console.log("Cerrando..");

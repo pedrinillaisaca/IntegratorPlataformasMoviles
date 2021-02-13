@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { NotificacionesService } from './notificaciones.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(
     public afAuth: AngularFireAuth,
     public notificationServ:NotificacionesService,
+    private router:Router,
     private afs: AngularFirestore) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
@@ -38,15 +40,15 @@ export class AuthService {
     }
   }
 
-  //  async loginGoogle(): Promise<User> {
-  //    try {
-  //      const { user } = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  //      this.updateUserData(user);
-  //      return user;
-  //    } catch (error) {
-  //      console.log('Error->', error);
-  //    }
-  //  }
+   async loginGoogle(): Promise<User> {
+     try {
+       const { user } = await this.afAuth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider());
+       this.updateUserData(user);
+       return user;
+     } catch (error) {
+       console.log('Error->', error);
+     }
+   }
   
 
   async register(email: string, password: string): Promise<User> {
@@ -104,6 +106,14 @@ export class AuthService {
     };
 
     return userRef.set(data, { merge: true });
+  }
+
+  private redirectUser(isVerified: boolean): void {
+    if (isVerified) {
+      this.router.navigate(['/view-user']);
+    } else {
+      this.router.navigate(['msj-confirm']);
+    }
   }
 
 

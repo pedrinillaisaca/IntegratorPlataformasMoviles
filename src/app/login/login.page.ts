@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 
 import { NotificacionesService } from '../services/notificaciones.service';
 import { ConfigAppServService } from '../services/config-app-serv.service';
+import { ConfiguracionApp } from '../modelo/configApp';
 
 
 
@@ -26,7 +27,9 @@ export class LoginPage implements OnInit {
     private authSvc: AuthService,
     private router:Router,
     public notificationsServ:NotificacionesService,
-    public configAppServ:ConfigAppServService
+    public configAppServ:ConfigAppServService,
+    public configAppService:ConfigAppServService
+
     ) { }
 
   ngOnInit() {
@@ -47,13 +50,27 @@ export class LoginPage implements OnInit {
   }     
 
   
-  async onLogConGoogle(){
-    // try {
-    //   const user = await this.authSvc.loginGoogle();
-    //   if(user){
+  
 
-    //   }
-    // } catch (error) {console.log("Error -> ",error)}
+async onLoginGoogle() {
+    try {
+      const user = await this.authSvc.loginGoogle();
+      if (user) {
+        const isVerified = this.authSvc.isEmailVerified(user);
+        
+        let configApp:ConfiguracionApp=new ConfiguracionApp();
+        configApp.tiempo="10seg";
+        configApp.param="elegir";
+        configApp.param1="elegir";
+        configApp.param2="elegir";                
+        configApp.userUid=user.uid;
+      this.configAppService.guardarConfiguracion(configApp);
+
+        this.redirectUser(isVerified);
+      }
+    } catch (error) {
+      console.log('Error->', error);
+    }
   }
 
   async  redireccionar (isVerified: boolean,user:any){        
@@ -71,6 +88,14 @@ export class LoginPage implements OnInit {
       this.router.navigate(["/view-user"],params);
     }else{
       this.notificationsServ.notificacionToast("Porfavor verifique su cuenta");
+    }
+  }
+
+  private redirectUser(isVerified: boolean): void {
+    if (isVerified) {
+      this.router.navigate(['/recuperar-contrasenia']);
+    } else {
+      
     }
   }
 
