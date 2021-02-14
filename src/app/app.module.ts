@@ -16,8 +16,7 @@ import { environment } from 'src/environments/environment';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { AppLauncher } from '@ionic-native/app-launcher/ngx';
 import { AppMinimize } from '@ionic-native/app-minimize/ngx';
-
-
+import { Camera } from '@ionic-native/camera/ngx';
 
 
 @NgModule({
@@ -39,6 +38,7 @@ import { AppMinimize } from '@ionic-native/app-minimize/ngx';
      BackgroundMode,
      AppLauncher,
      AppMinimize,
+     Camera,
      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
    ],
    bootstrap: [AppComponent]

@@ -27,6 +27,10 @@ export class ViewUserPage implements OnInit {
   interval:any;
 
   
+  imgData:string;
+  
+
+  
 
   constructor(private route: ActivatedRoute,
      private router: Router,
@@ -142,5 +146,22 @@ export class ViewUserPage implements OnInit {
     clearInterval(this.interval);
     this.notificationsServ.notificacionToast("El Servicio ha sido desabilitado.");
   }
+
+
+  imageSeleccionado(data:string){
+    console.log("Puto base 64",data);
+    // this.imgData=data;
+    this.configApp.img=data;
+  } 
+ 
+
+  uploadFinished(data){
+    this.configApp.img=null;
+    this.imgData=data;    
+    this.configApp.img=data;
+    
+  }
+  
+  
     
 }

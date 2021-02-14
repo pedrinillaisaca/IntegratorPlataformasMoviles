@@ -1,0 +1,14 @@
+<!-- PILAS CON EL VALOR DEL SOURCE PORQUE DETERMINA SI APAREVE O NO EL BOTON  -->
+<ion-card-content>
+    <ion-button type="submit" color="primary" expand="block" (click)="tomarFoto()" *ngIf="source!=='photo'">
+        <ion-icon name="camera-outline">
+
+        </ion-icon> Tomar fotografia
+    </ion-button>
+
+    <ion-button type="submit" color="primary" expand="block" (click)="recuperarImagen()" *ngIf="source!=='photo'">
+        <ion-icon name="image-outline">
+
+        </ion-icon>Subir desde la Galeria
+    </ion-button>
+</ion-card-content>

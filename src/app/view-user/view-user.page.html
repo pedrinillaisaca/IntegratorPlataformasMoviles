@@ -8,43 +8,48 @@
 </ion-header>
 <ion-content>
 
+    <ion-card>
+        <ion-header>
+            <h5>Bienvenido: {{user.displayName}} </h5>
+            <h5>Correo: {{infoUser.correo}} </h5>
+            <!-- <ion-img src={{imgData}}></ion-img> -->
+            <img *ngIf="configApp.img.url != null" src={{configApp.img.url}} />
+            <img src={{imgData}} />
+        </ion-header>
+        <ion-item>
+            <ion-label>Intervalo:</ion-label>
+            <ion-select value="configApp.tiempo" [(ngModel)]=configApp.tiempo>
+                <ion-select-option value="10seg">10seg</ion-select-option>
+                <ion-select-option value="50seg">50seg</ion-select-option>
+                <ion-select-option value="10min">10min</ion-select-option>
+                <ion-select-option value="15min">15min</ion-select-option>
+                <ion-select-option value="20min">20min</ion-select-option>
+                <ion-select-option value="25min">25min</ion-select-option>
+            </ion-select>
+        </ion-item>
 
-    <h5>Bienvenido {{infoUser.correo}} </h5>
+        <ion-item>
+            <ion-label>Run Servicio</ion-label>
+            <ion-toggle slot="start" name="apple" color="secondary" [(ngModel)]=interruptor (ngModelChange)=runService()></ion-toggle>
+        </ion-item>
 
-    <ion-item>
-        <ion-label>Intervalo:</ion-label>
-        <ion-select value="configApp.tiempo" [(ngModel)]=configApp.tiempo>
-            <ion-select-option value="10seg">10seg</ion-select-option>
-            <ion-select-option value="50seg">50seg</ion-select-option>
-            <ion-select-option value="10min">10min</ion-select-option>
-            <ion-select-option value="15min">15min</ion-select-option>
-            <ion-select-option value="20min">20min</ion-select-option>
-            <ion-select-option value="25min">25min</ion-select-option>
-        </ion-select>
-    </ion-item>
+        <ion-item>
+            <ion-label position="floating">Param:</ion-label>
+            <ion-input type="text" [(ngModel)]=configApp.param></ion-input>
+        </ion-item>
 
-    <ion-item>
-        <ion-label>Run Servicio</ion-label>
-        <ion-toggle slot="start" name="apple" color="secondary" [(ngModel)]=interruptor (ngModelChange)=runService()></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-        <ion-label position="floating">Param:</ion-label>
-        <ion-input type="text" [(ngModel)]=configApp.param></ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-label position="floating">Param1:</ion-label>
-        <ion-input type="text" [(ngModel)]=configApp.param1></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label position="floating">Param2:</ion-label>
-        <ion-input type="text" [(ngModel)]=configApp.param2></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label position="floating">Param1:</ion-label>
+            <ion-input type="text" [(ngModel)]=configApp.param1></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Param2:</ion-label>
+            <ion-input type="text" [(ngModel)]=configApp.param2></ion-input>
+        </ion-item>
 
 
 
-    <!-- <ion-item *ngFor="let conffig of configApp1 | async">
+        <!-- <ion-item *ngFor="let conffig of configApp1 | async">
         <ion-avatar slot="start">
             <img src="">
         </ion-avatar>
@@ -54,13 +59,22 @@
         </ion-label>
     </ion-item> -->
 
-    <ion-row>
-        <ion-col>
-            <ion-button type="submit" color="primary" expand="block" (click)="saveConfig()">Guardar Cambios</ion-button>
-        </ion-col>
-        <ion-col>
-            <ion-button type="submit" color="primary" expand="block" (click)="logOut()">Cerrar Sesion</ion-button>
-        </ion-col>
-    </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button type="submit" color="primary" expand="block" (click)="saveConfig()">Guardar Cambios</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button type="submit" color="primary" expand="block" (click)="logOut()">Cerrar Sesion</ion-button>
+            </ion-col>
+        </ion-row>
+
+
+
+
+    </ion-card>
+    <ion-card>
+        <app-component-foto source="galeria" (imageSelected)="imageSeleccionado($event)" (uploadFinished)="uploadFinished($event)"></app-component-foto>
+    </ion-card>
+
 
 </ion-content>
