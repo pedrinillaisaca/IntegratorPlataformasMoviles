@@ -1,6 +1,6 @@
 .grid {
     display: grid;
-    background: darkred;
+    // background: darkred;
     padding-right: 10px;
     padding-left: 10px;
     padding-top: 10px;
@@ -13,24 +13,24 @@
 
 .unidad {
     display: center;
-    background: darkslategray;
+    // background: darkslategray;
 }
 
 .unidad1 {
     display: center;
-    background: darkcyan;
+    // background: darkcyan;
     grid-row: x0 / x1;
 }
 
 .unidad2 {
     display: center;
-    background: darkgray;
+    // background: darkgray;
     grid-row: x0 / x1;
 }
 
 .unidad3 {
     display: center;
-    background: darkred;
+    // background: darkred;
     grid-row: x0 / x1;
 }
 

@@ -9,35 +9,36 @@
 
 
 <ion-content>
-
-    <ion-label>
-        <h1 style="text-align: center;">Resolver la siguiente operación:</h1>
+    <ion-card>
+        <ion-label>
+            <h1 style="text-align: center; color: black;">Resolver la siguiente operación:</h1>
+            <br>
+            <h1 style="text-align: center; color: black;">{{operacion}}</h1>
+        </ion-label>
         <br>
-        <h1 style="text-align: center;">{{operacion}}</h1>
-    </ion-label>
-    <br>
-    <div class="grid">
-        <div class="unidad">
-            <ion-button (click)="comprobar(paramApp.res)">
-                <h2>{{paramApp.res}}</h2>
-            </ion-button>
-        </div>
-        <div class="unidad">
-            <ion-button (click)="comprobar(paramApp.res1)">
-                <h2>{{paramApp.res1}}</h2>
-            </ion-button>
-        </div>
-        <div class="unidad">
-            <ion-button (click)="comprobar(paramApp.res2)">
-                <h2>{{paramApp.res2}}</h2>
-            </ion-button>
-        </div>
-        <div class="unidad">
-            <ion-button (click)="comprobar(paramApp.res3)">
-                <h2>{{paramApp.res3}}</h2>
-            </ion-button>
-        </div>
+        <div class="grid">
+            <div class="unidad">
+                <ion-button (click)="comprobar(paramApp.res)">
+                    <h2>{{paramApp.res}}</h2>
+                </ion-button>
+            </div>
+            <div class="unidad">
+                <ion-button (click)="comprobar(paramApp.res1)">
+                    <h2>{{paramApp.res1}}</h2>
+                </ion-button>
+            </div>
+            <div class="unidad">
+                <ion-button (click)="comprobar(paramApp.res2)">
+                    <h2>{{paramApp.res2}}</h2>
+                </ion-button>
+            </div>
+            <div class="unidad">
+                <ion-button (click)="comprobar(paramApp.res3)">
+                    <h2>{{paramApp.res3}}</h2>
+                </ion-button>
+            </div>
 
-    </div>
+        </div>
+    </ion-card>
 
 </ion-content>

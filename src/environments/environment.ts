@@ -4,14 +4,23 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {//api de la dependencia de login
-    apiKey: "AIzaSyBs0qe7ypAEyBsmg28K8DXth1ykERcyFH8",
-    authDomain: "integradorups.firebaseapp.com",
-    projectId: "integradorups",
-    storageBucket: "integradorups.appspot.com",
-    messagingSenderId: "698697303573",
-    appId: "1:698697303573:web:3ada00a80524e5d739f01c"
+
+  firebaseConfig : {
+    apiKey: "AIzaSyBmBP5R_IKfbyEs5odVyBZSQlRjikYN0yI",
+    authDomain: "integradorfireplataformas.firebaseapp.com",
+    projectId: "integradorfireplataformas",
+    storageBucket: "integradorfireplataformas.appspot.com",
+    messagingSenderId: "1045114846313",
+    appId: "1:1045114846313:web:faee3726c94f7c656876f8"
   },
+  // firebaseConfig : {//api de la dependencia de login
+  //   apiKey: "AIzaSyBs0qe7ypAEyBsmg28K8DXth1ykERcyFH8",
+  //   authDomain: "integradorups.firebaseapp.com",
+  //   projectId: "integradorups",
+  //   storageBucket: "integradorups.appspot.com",
+  //   messagingSenderId: "698697303573",
+  //   appId: "1:698697303573:web:3ada00a80524e5d739f01c"
+  // },
 };
 
 /*

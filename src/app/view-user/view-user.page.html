@@ -13,13 +13,14 @@
             <h5>Bienvenido: {{user.displayName}} </h5>
             <h5>Correo: {{infoUser.correo}} </h5>
             <!-- <ion-img src={{imgData}}></ion-img> -->
-            <img *ngIf="configApp.img.url != null" src={{configApp.img.url}} />
+            <img *ngIf="configApp.img != null" src={{configApp.img.url}} />
             <img src={{imgData}} />
         </ion-header>
         <ion-item>
             <ion-label>Intervalo:</ion-label>
             <ion-select value="configApp.tiempo" [(ngModel)]=configApp.tiempo>
                 <ion-select-option value="10seg">10seg</ion-select-option>
+                <ion-select-option value="30seg">30seg</ion-select-option>
                 <ion-select-option value="50seg">50seg</ion-select-option>
                 <ion-select-option value="10min">10min</ion-select-option>
                 <ion-select-option value="15min">15min</ion-select-option>
@@ -33,7 +34,7 @@
             <ion-toggle slot="start" name="apple" color="secondary" [(ngModel)]=interruptor (ngModelChange)=runService()></ion-toggle>
         </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
             <ion-label position="floating">Param:</ion-label>
             <ion-input type="text" [(ngModel)]=configApp.param></ion-input>
         </ion-item>
@@ -45,7 +46,7 @@
         <ion-item>
             <ion-label position="floating">Param2:</ion-label>
             <ion-input type="text" [(ngModel)]=configApp.param2></ion-input>
-        </ion-item>
+        </ion-item> -->
 
 
 
